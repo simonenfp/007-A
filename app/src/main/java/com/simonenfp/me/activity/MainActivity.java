@@ -1,5 +1,6 @@
 package com.simonenfp.me.activity;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.widget.MsgView;
 import com.simonenfp.me.R;
 import com.simonenfp.me.adapter.MyFragmentPagerAdapter;
 import com.simonenfp.me.fragment.FirstFragment;
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     private List<String> mListTabTitles;
     private List<Fragment> mListFragments;
-    private TabLayout mTabLayout;
+    private SlidingTabLayout mTabLayout;
     private ViewPager mViewPager;
     private FragmentPagerAdapter mFragmentPagerAdapter;
 
@@ -57,12 +60,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
             });
         }
 
-        mTabLayout = (TabLayout) findViewById(R.id.activity_main_tab);
+        mTabLayout = (SlidingTabLayout) findViewById(R.id.tl_2);
         mViewPager = (ViewPager)findViewById(R.id.activity_viewPager);
 
-        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),mListFragments,mListTabTitles);
-        mViewPager.setAdapter(mFragmentPagerAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
+
+
 
     }
 
@@ -74,12 +76,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
         mListTabTitles.addAll(list);
 
-        //设置TabLayout的模式
-//        mTabLayout.setTabMode(TabLayout.MODE_FIXED|TabLayout.MODE_SCROLLABLE);
-//        if (mListTabTitles != null && mListTabTitles.size() > 0){
-//            for (String title : mListTabTitles)
-//                mTabLayout.addTab(mTabLayout.newTab().setText(title));
-//        }
 
         mFirstFragment = new FirstFragment();
         mSecondFragment = new SecondFragment();
@@ -89,7 +85,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         mListFragments.add(mThirdFragment);
 
 
-        mFragmentPagerAdapter.notifyDataSetChanged();
+        mListFragments.add(new FirstFragment());
+        mListFragments.add(new SecondFragment());
+        mListFragments.add(new ThirdFragment());
+
+        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),mListFragments,mListTabTitles);
+        mViewPager.setAdapter(mFragmentPagerAdapter);
+        mTabLayout.setViewPager(mViewPager);
+
+
+
+//        mFragmentPagerAdapter.notifyDataSetChanged();
 
     }
 

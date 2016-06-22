@@ -4,6 +4,8 @@
         <item>@string/activity_main_tab_1</item>
         <item>@string/activity_main_tab_2</item>
         <item>@string/activity_main_tab_3</item>
-
+        <item>@string/activity_main_tab_1</item>
+        <item>@string/activity_main_tab_2</item>
+        <item>@string/activity_main_tab_3</item>
     </string-array>
 </resources>

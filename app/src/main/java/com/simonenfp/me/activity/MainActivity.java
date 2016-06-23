@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         View viewRoot = findViewById(R.id.linear1);
+
         Log.d("DDDD","viewRoot:"+viewRoot.getId());
 
 

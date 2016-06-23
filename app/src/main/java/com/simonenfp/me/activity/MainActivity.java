@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
 
 
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
 //            StatusBarTools.dealStatusBar(this,true);
             setTransparentStatusBar();

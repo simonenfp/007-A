@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         View viewRoot = findViewById(R.id.linear1);
         Log.d("DDDD","viewRoot:"+viewRoot.getId());
 
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
 //            StatusBarTools.dealStatusBar(this,true);
             setTransparentStatusBar();

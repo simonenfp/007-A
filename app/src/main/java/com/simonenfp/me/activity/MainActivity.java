@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     private List<Fragment> mListFragments;
     private SlidingTabLayout mTabLayout;
     private ViewPager mViewPager;
+    
     private FragmentPagerAdapter mFragmentPagerAdapter;
 
     private FirstFragment mFirstFragment;

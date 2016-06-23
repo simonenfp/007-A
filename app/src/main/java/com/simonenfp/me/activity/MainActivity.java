@@ -10,6 +10,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,18 +76,32 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-        View statusBarView = mContentView.getChildAt(0);
-        Log.d("DDDD","statusBarView:"+statusBarView.getId());
-        //移除假的 View
-        if (statusBarView != null && statusBarView.getLayoutParams() != null && statusBarView.getLayoutParams().height == getStatusBarHeight(this)) {
-            mContentView.removeView(statusBarView);
+        View rootView = mContentView.getChildAt(0);
+
+        if (rootView != null){
+//            LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            rootView.setPadding(0,getStatusBarHeight(this),0,0);
+//            //清除 ChildView 的 marginTop 属性
+//            if (lp != null ) {
+//                Log.d("DDDD","viewRoot1111111:"+rootView.getId());
+//
+//                lp.l += getStatusBarHeight(this);
+//                rootView.setLayoutParams(lp);
+//            }
         }
-        View vi = mContentView.getChildAt(0);
-        if (vi == null){
-            Log.d("DDDD","vi == null");
-        }else {
-            Log.d("DDDD","vi != null"+" "+vi.getId());
-        }
+
+//        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+//        Log.d("DDDD","decorView count:"+decorView.getChildCount() + " decorView0.id:"+decorView.getChildAt(0).getId());
+//        //移除假的 View
+//        if (statusBarView != null && statusBarView.getLayoutParams() != null && statusBarView.getLayoutParams().height == getStatusBarHeight(this)) {
+//            mContentView.removeView(statusBarView);
+//
+//        }
+
+//        Log.d("DDDD","decorView count:"+decorView.getChildCount() + " decorView0.id:"+decorView.getChildAt(0).getId());
+
+
+
 //        //不预留空间
 //        if (mContentView.getChildAt(0) != null) {
 //            ViewCompat.setFitsSystemWindows(mContentView.getChildAt(0), false);

@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
         ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
         View rootView = mContentView.getChildAt(0);
+        //
+        //
 
         if (rootView != null){
 //            LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

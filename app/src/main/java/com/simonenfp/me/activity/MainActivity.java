@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         mTabLayout = (SlidingTabLayout) findViewById(R.id.tl_2);
         mViewPager = (ViewPager)findViewById(R.id.activity_viewPager);
 
-
+        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),mListFragments,mListTabTitles);
+        mViewPager.setAdapter(mFragmentPagerAdapter);
+        mTabLayout.setViewPager(mViewPager);
 
 
     }
@@ -107,14 +109,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         mListFragments.add(new SecondFragment());
         mListFragments.add(new ThirdFragment());
 
-        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),mListFragments,mListTabTitles);
-        mViewPager.setAdapter(mFragmentPagerAdapter);
-        mTabLayout.setViewPager(mViewPager);
 
 
 
-//        mFragmentPagerAdapter.notifyDataSetChanged();
 
+        mFragmentPagerAdapter.notifyDataSetChanged();
+        mTabLayout.notifyDataSetChanged();
     }
 
 }

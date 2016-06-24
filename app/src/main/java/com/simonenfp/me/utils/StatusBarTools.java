@@ -18,18 +18,21 @@ import android.widget.FrameLayout;
 public class StatusBarTools {
 
     public static void dealStatusBar(Activity activity){
-        Window window = activity.getWindow();
-        //set transparent status
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //set transparent status after 4.4
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
 
-        ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+            Window window = activity.getWindow();
+            //set transparent status
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        //set contentView rootView padding in order to set aside the location of the power strip
-        View rootView = mContentView.getChildAt(0);
-        if (rootView != null){
-            rootView.setPadding(0,getStatusBarHeight(activity),0,0);
+            ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+
+            //set contentView rootView padding in order to set aside the location of the power strip
+            View rootView = mContentView.getChildAt(0);
+            if (rootView != null){
+                rootView.setPadding(0,getStatusBarHeight(activity),0,0);
+            }
         }
-
     }
     //Get status bar height
     public static int getStatusBarHeight(Context context) {
@@ -37,6 +40,8 @@ public class StatusBarTools {
         int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
             result = context.getResources().getDimensionPixelOffset(resId);
+        }else if (resId == 0){
+            result = DisplayUtils.dip2px(context,20);
         }
         return result;
     }

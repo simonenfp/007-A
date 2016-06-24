@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //set transparent status after 4.4
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            StatusBarTools.dealStatusBar(this);
-        }
+
+        StatusBarTools.dealStatusBar(this);
+
+
         mListTabTitles = new ArrayList<>();
         mListFragments = new ArrayList<>();
         initView();

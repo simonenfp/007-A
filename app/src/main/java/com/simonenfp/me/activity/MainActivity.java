@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
         View rootView = mContentView.getChildAt(0);
         //
+        View view1 = rootView;
         //
         View view = rootView;
         //ddddffffff

@@ -52,17 +52,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        View viewRoot = findViewById(R.id.linear1);
 
-        Log.d("DDDD","viewRoot:"+viewRoot.getId());
-
-
-
-
-
+        //set transparent status after 4.4
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-//            StatusBarTools.dealStatusBar(this,true);
-            setTransparentStatusBar();
+            StatusBarTools.dealStatusBar(this);
         }
         mListTabTitles = new ArrayList<>();
         mListFragments = new ArrayList<>();
@@ -71,59 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         mPresenter.getTabData();
     }
 
-    private void setTransparentStatusBar() {
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-        View rootView = mContentView.getChildAt(0);
-        //
-        View view1 = rootView;
-        //
-        View view = rootView;
-        //ddddffffff
-
-        if (rootView != null){
-//            LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            rootView.setPadding(0,getStatusBarHeight(this),0,0);
-//            //清除 ChildView 的 marginTop 属性
-//            if (lp != null ) {
-//                Log.d("DDDD","viewRoot1111111:"+rootView.getId());
-//
-//                lp.l += getStatusBarHeight(this);
-//                rootView.setLayoutParams(lp);
-//            }
-        }
-
-//        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-//        Log.d("DDDD","decorView count:"+decorView.getChildCount() + " decorView0.id:"+decorView.getChildAt(0).getId());
-//        //移除假的 View
-//        if (statusBarView != null && statusBarView.getLayoutParams() != null && statusBarView.getLayoutParams().height == getStatusBarHeight(this)) {
-//            mContentView.removeView(statusBarView);
-//
-//        }
-
-//        Log.d("DDDD","decorView count:"+decorView.getChildCount() + " decorView0.id:"+decorView.getChildAt(0).getId());
-
-
-
-//        //不预留空间
-//        if (mContentView.getChildAt(0) != null) {
-//            ViewCompat.setFitsSystemWindows(mContentView.getChildAt(0), false);
-//        }
-
-
-
-    }
-    //Get status bar height
-    public static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resId > 0) {
-            result = context.getResources().getDimensionPixelOffset(resId);
-        }
-        return result;
-    }
 
     private void initView() {
         //back button

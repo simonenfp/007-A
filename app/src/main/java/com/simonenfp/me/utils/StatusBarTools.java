@@ -17,56 +17,19 @@ import android.widget.FrameLayout;
  */
 public class StatusBarTools {
 
-    private static final int COLOR_TRANSLUCENT = Color.parseColor("#00000000");
-
-    public static final int DEFAULT_COLOR_ALPHA = 112;
-
-    public static void dealStatusBar(Activity activity, boolean hideStatusBarBackground){
+    public static void dealStatusBar(Activity activity){
         Window window = activity.getWindow();
-        ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
-        //set child View not fill the system window
-        View mChildView = mContentView.getChildAt(0);
-        if (mChildView != null) {
-            ViewCompat.setFitsSystemWindows(mChildView, false);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            int statusBarHeight = getStatusBarHeight(activity);
+        //set transparent status
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-            //First translucent status bar.
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                //After LOLLIPOP just set LayoutParams.
-//                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//                if (hideStatusBarBackground) {
-//                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//                    window.setStatusBarColor(COLOR_TRANSLUCENT);
-//                } else {
-//                    window.setStatusBarColor(calculateStatusBarColor(COLOR_TRANSLUCENT, DEFAULT_COLOR_ALPHA));
-//                }
-//                //must call requestApplyInsets, otherwise it will have space in screen bottom
-//                if (mChildView != null) {
-//                    ViewCompat.requestApplyInsets(mChildView);
-//                }
-            } else {
-                ViewGroup mDecorView = (ViewGroup) window.getDecorView();
-                if (mDecorView.getTag() != null && mDecorView.getTag() instanceof Boolean && (Boolean)mDecorView.getTag()) {
-                    Log.d("DDDD","ddddddddd");
-                    mChildView = mDecorView.getChildAt(0);
-                    //remove fake status bar view.
-                    mContentView.removeView(mChildView);
-                    mChildView = mContentView.getChildAt(0);
-                    if (mChildView != null) {
-                        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mChildView.getLayoutParams();
-                        //cancel the margin top
-                        if (lp != null && lp.topMargin >= statusBarHeight) {
-                            lp.topMargin -= statusBarHeight;
-                            mChildView.setLayoutParams(lp);
-                        }
-                    }
-                    mDecorView.setTag(false);
-                }
-            }
+        ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+
+        //set contentView rootView padding in order to set aside the location of the power strip
+        View rootView = mContentView.getChildAt(0);
+        if (rootView != null){
+            rootView.setPadding(0,getStatusBarHeight(activity),0,0);
         }
+
     }
     //Get status bar height
     public static int getStatusBarHeight(Context context) {
@@ -77,15 +40,5 @@ public class StatusBarTools {
         }
         return result;
     }
-    //Get alpha color
-    private static int calculateStatusBarColor(int color, int alpha) {
-        float a = 1 - alpha / 255f;
-        int red = color >> 16 & 0xff;
-        int green = color >> 8 & 0xff;
-        int blue = color & 0xff;
-        red = (int) (red * a + 0.5);
-        green = (int) (green * a + 0.5);
-        blue = (int) (blue * a + 0.5);
-        return 0xff << 24 | red << 16 | green << 8 | blue;
-    }
+
 }

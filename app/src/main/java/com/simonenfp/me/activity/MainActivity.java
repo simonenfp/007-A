@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         View rootView = mContentView.getChildAt(0);
         //
         //
-
-        //dddd
+        View view = rootView;
+        //ddddffffff
 
         if (rootView != null){
 //            LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

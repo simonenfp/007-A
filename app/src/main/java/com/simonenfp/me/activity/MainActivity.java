@@ -53,7 +53,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
+
+//         Hide the status bar.
         StatusBarTools.dealStatusBar(this);
 
 
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         //presenter get data
         mPresenter.getTabData();
     }
+
+
 
 
 

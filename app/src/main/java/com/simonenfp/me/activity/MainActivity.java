@@ -51,13 +51,11 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 //        View decorView = getWindow().getDecorView();
 //        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-
-
 
 
         mListTabTitles = new ArrayList<>();
@@ -102,9 +100,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         mListFragments.add(mThirdFragment);
 
 
-        mListFragments.add(new FirstFragment());
-        mListFragments.add(new SecondFragment());
-        mListFragments.add(new ThirdFragment());
 
 
 

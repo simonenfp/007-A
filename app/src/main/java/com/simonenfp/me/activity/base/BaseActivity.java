@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.simonenfp.me.R;
@@ -39,6 +40,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
+
+
 
         ViewGroup contentParent = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_base, null);
 

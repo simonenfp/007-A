@@ -7,13 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/color_include_activity_main_top_bar"
     android:id="@+id/linear1"
 
     >
-
-    <include layout="@layout/include_activity_main_top_bar"/>
-
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/tl_2"
         android:layout_width="match_parent"

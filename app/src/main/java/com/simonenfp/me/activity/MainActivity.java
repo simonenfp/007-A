@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.widget.MsgView;
 import com.simonenfp.me.R;
+import com.simonenfp.me.activity.base.BaseActivity;
 import com.simonenfp.me.adapter.MyFragmentPagerAdapter;
 import com.simonenfp.me.fragment.FirstFragment;
 import com.simonenfp.me.fragment.SecondFragment;
@@ -32,7 +33,7 @@ import com.simonenfp.me.utils.StatusBarTools;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainActivityView {
+public class MainActivity extends BaseActivity implements MainActivityView {
 
     private List<String> mListTabTitles;
     private List<Fragment> mListFragments;
@@ -50,15 +51,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
 
 //        View decorView = getWindow().getDecorView();
 //        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
 
-//         Hide the status bar.
-        StatusBarTools.dealStatusBar(this);
 
 
         mListTabTitles = new ArrayList<>();
@@ -73,16 +72,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
 
     private void initView() {
-        //back button
-        View view = findViewById(R.id.iv_main_top_bar_back);
-        if (view != null){
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
-            });
-        }
+
 
         mTabLayout = (SlidingTabLayout) findViewById(R.id.tl_2);
         mViewPager = (ViewPager)findViewById(R.id.activity_viewPager);

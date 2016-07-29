@@ -1,34 +1,19 @@
-package com.simonenfp.me.activity;
+package com.simonenfp.me.module.ui.activity;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.design.widget.TabLayout;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.widget.MsgView;
 import com.simonenfp.me.R;
-import com.simonenfp.me.activity.base.BaseActivity;
 import com.simonenfp.me.adapter.MyFragmentPagerAdapter;
-import com.simonenfp.me.fragment.FirstFragment;
-import com.simonenfp.me.fragment.SecondFragment;
-import com.simonenfp.me.fragment.ThirdFragment;
-import com.simonenfp.me.mvp.presenter.MainActivityPresenter;
-import com.simonenfp.me.mvp.view.MainActivityView;
-import com.simonenfp.me.utils.StatusBarTools;
+import com.simonenfp.me.base.BaseActivity;
+import com.simonenfp.me.module.presenter.MainActivityPresenter;
+import com.simonenfp.me.module.ui.fragment.FirstFragment;
+import com.simonenfp.me.module.ui.fragment.SecondFragment;
+import com.simonenfp.me.module.ui.fragment.ThirdFragment;
+import com.simonenfp.me.module.view.MainActivityView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +38,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        View decorView = getWindow().getDecorView();
-//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-
-
         mListTabTitles = new ArrayList<>();
         mListFragments = new ArrayList<>();
         initView();
@@ -98,11 +78,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         mListFragments.add(mFirstFragment);
         mListFragments.add(mSecondFragment);
         mListFragments.add(mThirdFragment);
-
-
-
-
-
 
 
         mFragmentPagerAdapter.notifyDataSetChanged();

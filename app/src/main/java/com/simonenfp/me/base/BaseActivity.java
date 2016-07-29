@@ -1,4 +1,4 @@
-package com.simonenfp.me.activity.base;
+package com.simonenfp.me.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import com.simonenfp.me.R;
+import com.simonenfp.me.app.MyActivityManager;
 import com.simonenfp.me.utils.StatusBarTools;
 
 /**

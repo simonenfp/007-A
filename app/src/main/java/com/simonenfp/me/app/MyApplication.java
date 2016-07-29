@@ -1,6 +1,8 @@
-package com.simonenfp.me;
+package com.simonenfp.me.app;
 
 import android.app.Application;
+
+import com.orhanobut.logger.Logger;
 
 /**
  * Created by simonenfp on 2016/6/22.
@@ -20,5 +22,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
+        Logger.init();
     }
 }

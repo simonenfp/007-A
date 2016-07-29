@@ -1,4 +1,4 @@
-package com.simonenfp.me.activity.base;
+package com.simonenfp.me.app;
 
 import android.app.Activity;
 import android.app.ActivityManager;

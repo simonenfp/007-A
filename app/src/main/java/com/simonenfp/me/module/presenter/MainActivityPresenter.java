@@ -1,10 +1,8 @@
-package com.simonenfp.me.mvp.presenter;
+package com.simonenfp.me.module.presenter;
 
-import android.content.res.TypedArray;
-
-import com.simonenfp.me.MyApplication;
+import com.simonenfp.me.app.MyApplication;
 import com.simonenfp.me.R;
-import com.simonenfp.me.mvp.view.MainActivityView;
+import com.simonenfp.me.module.view.MainActivityView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

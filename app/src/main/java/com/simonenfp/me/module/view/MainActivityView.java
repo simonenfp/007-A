@@ -1,4 +1,4 @@
-package com.simonenfp.me.mvp.view;
+package com.simonenfp.me.module.view;
 
 import java.util.List;
 

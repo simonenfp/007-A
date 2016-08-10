@@ -29,55 +29,36 @@ public class FragmentFirstPresenter {
     Observer<List<CommonItem>> observer = new Observer<List<CommonItem>>() {
         @Override
         public void onCompleted() {
-
+            Logger.d("onCompleted");
         }
 
         @Override
         public void onError(Throwable e) {
+            Logger.d("onError");
             fragmentFirstView.showToast("出错");
         }
 
         @Override
         public void onNext(List<CommonItem> commonItems) {
+            Logger.d("onNext");
             fragmentFirstView.initRecycleView(commonItems);
         }
     };
     public void getData(){
 //        unsubscribe_m();
-//        subscription = Network.getCommonItemApi()
-//                .search("可爱")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(observer);
-        final ArrayList<CommonItem> arrayList = new ArrayList<CommonItem>();
-        CommonItem commonItem = new CommonItem();
-        commonItem.setDescription("aaaaa");
-        arrayList.add(commonItem);
-        arrayList.add(commonItem);
-        arrayList.add(commonItem);
-        Observable.create(new Observable.OnSubscribe<List<CommonItem>>() {
-            @Override
-            public void call(Subscriber<? super List<CommonItem>> subscriber) {
-                subscriber.onNext(arrayList);
-            }
-        }).subscribe(new Observer<List<CommonItem>>() {
-            @Override
-            public void onCompleted() {
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(List<CommonItem> stringList) {
-
-                Logger.d(stringList.get(0).getDescription());
-                fragmentFirstView.initRecycleView(stringList);
-            }
-        });
+        subscription = Network.getCommonItemApi()
+                .search("装逼")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+//        final ArrayList<CommonItem> arrayList = new ArrayList<CommonItem>();
+//        CommonItem commonItem = new CommonItem();
+//        commonItem.setDescription("aaaaa");
+//        arrayList.add(commonItem);
+//        arrayList.add(commonItem);
+//        arrayList.add(commonItem);
+//        Observable.create();
 
     }
     protected void unsubscribe_m() {

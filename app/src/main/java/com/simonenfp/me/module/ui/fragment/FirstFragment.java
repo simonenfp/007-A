@@ -68,6 +68,7 @@ public class FirstFragment extends BaseFragment implements FragmentFirstView {
         };
         recycleView.setLayoutManager(new LinearLayoutManager(mContext));
         recycleView.setAdapter(adapter);
+        swipeRefreshLayout.setEnabled(false);
 
         presenter.getData();
 

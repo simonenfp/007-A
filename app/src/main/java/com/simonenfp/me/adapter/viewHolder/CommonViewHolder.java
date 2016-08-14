@@ -40,7 +40,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
             view = mConvertView.findViewById(viewId);
             mViews.put(viewId, view);
         }
-        return (T)view;
+        return (T) view;
     }
 
     public CommonViewHolder setText(int viewId,String string){

@@ -22,6 +22,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
-        Logger.init();
+        Logger.init("007");
     }
 }

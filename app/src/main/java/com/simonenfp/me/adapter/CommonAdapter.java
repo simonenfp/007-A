@@ -42,4 +42,5 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     public int getItemCount() {
         return mDatas.size();
     }
+
 }

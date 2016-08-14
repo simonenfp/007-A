@@ -1,13 +1,14 @@
 package com.simonenfp.me.module.presenter;
 
-import android.content.Context;
-
 import com.orhanobut.logger.Logger;
 import com.simonenfp.me.module.model.CommonItem;
+import com.simonenfp.me.module.model.Data;
+import com.simonenfp.me.module.model.HttpResult;
+import com.simonenfp.me.module.model.PhotoEntity;
 import com.simonenfp.me.module.view.FragmentFirstView;
 import com.simonenfp.me.network.Network;
+import com.simonenfp.me.network.RetrofitManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -15,6 +16,8 @@ import rx.Observer;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -26,39 +29,41 @@ public class FragmentFirstPresenter {
         this.fragmentFirstView = fragmentFirstView;
     }
     protected Subscription subscription;
-    Observer<List<CommonItem>> observer = new Observer<List<CommonItem>>() {
-        @Override
-        public void onCompleted() {
-            Logger.d("onCompleted");
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Logger.d("onError");
-            fragmentFirstView.showToast("出错");
-        }
-
-        @Override
-        public void onNext(List<CommonItem> commonItems) {
-            Logger.d("onNext");
-            fragmentFirstView.initRecycleView(commonItems);
-        }
-    };
-    public void getData(){
+    public void getData(String id,int startPage){
 //        unsubscribe_m();
 
-        subscription = Network.getCommonItemApi()
-                .search("装逼")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-//        final ArrayList<CommonItem> arrayList = new ArrayList<CommonItem>();
-//        CommonItem commonItem = new CommonItem();
-//        commonItem.setDescription("aaaaa");
-//        arrayList.add(commonItem);
-//        arrayList.add(commonItem);
-//        arrayList.add(commonItem);
-//        Observable.create();
+        subscription = RetrofitManager.getInstance()
+                .getPhotoListObservable(id,startPage)
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        fragmentFirstView.requestBefore();
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<HttpResult<Data>, List<PhotoEntity>>() {
+                    @Override
+                    public List<PhotoEntity> call(HttpResult<Data> dataHttpResult) {
+                        return dataHttpResult.data.list;
+                    }
+                })
+                .subscribe(new Observer<List<PhotoEntity>>() {
+                    @Override
+                    public void onCompleted() {
+                        fragmentFirstView.requestComplete();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        fragmentFirstView.showToast(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(List<PhotoEntity> photoEntities) {
+                        fragmentFirstView.updateView(photoEntities);
+                    }
+                });
+
 
     }
     protected void unsubscribe_m() {

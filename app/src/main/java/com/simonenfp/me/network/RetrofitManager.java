@@ -34,8 +34,8 @@ public class RetrofitManager {
         if (commonService == null){
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://api.sina.cn/sinago/")
                     .client(new OkHttpClient())
+                    .baseUrl("http://api.sina.cn/sinago/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();

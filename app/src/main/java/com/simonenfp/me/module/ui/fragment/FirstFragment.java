@@ -70,7 +70,7 @@ public class FirstFragment extends BaseFragment implements FragmentFirstView {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 //        Logger.d("FirstFragment onActivityCreated");
-        presenter.getData("2",startPage);
+        presenter.getData("hdpic_funny",startPage);
 
     }
 
@@ -95,6 +95,7 @@ public class FirstFragment extends BaseFragment implements FragmentFirstView {
 //        Logger.d("FirstFragment onDestroyView");
         super.onDestroyView();
         ButterKnife.unbind(this);
+
     }
 
 
@@ -104,6 +105,7 @@ public class FirstFragment extends BaseFragment implements FragmentFirstView {
         photoEntities.clear();
         photoEntities.addAll(list);
         adapter.notifyDataSetChanged();
+
     }
 
     @Override

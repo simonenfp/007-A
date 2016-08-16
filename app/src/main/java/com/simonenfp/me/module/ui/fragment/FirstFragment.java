@@ -110,7 +110,7 @@ public class FirstFragment extends BaseFragment implements FragmentFirstView {
 
     @Override
     public void showToast(String s) {
-        super.showToast("error");
+        super.showToast(s);
     }
 
     @Override

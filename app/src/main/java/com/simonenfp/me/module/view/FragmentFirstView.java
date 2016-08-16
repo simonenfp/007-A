@@ -1,6 +1,5 @@
 package com.simonenfp.me.module.view;
 
-import com.simonenfp.me.module.model.CommonItem;
 import com.simonenfp.me.module.model.PhotoEntity;
 
 import java.util.List;

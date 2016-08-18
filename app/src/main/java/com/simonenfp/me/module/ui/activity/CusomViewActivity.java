@@ -17,6 +17,8 @@ public class CusomViewActivity extends BaseActivity {
 
     @Bind(R.id.iv_1)
     ImageView iv1;
+    @Bind(R.id.iv_2)
+    ImageView iv2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,12 @@ public class CusomViewActivity extends BaseActivity {
 
         drawOnBitmap();
 
+
     }
-    private void drawOnBitmap(){
+
+    private void drawOnBitmap() {
         //创建一个600x300的bitmap
-        Bitmap bitmap = Bitmap.createBitmap(800,200, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(800, 200, Bitmap.Config.ARGB_8888);
         //创建画布
         Canvas canvas = new Canvas(bitmap);
 //        Fill the entire canvas' bitmap (restricted to the current clip) with the specified color and porter-duff xfermode.
@@ -39,9 +43,18 @@ public class CusomViewActivity extends BaseActivity {
         paint.setTextSize(50);
 //        在画布上写text，以画布左上角为原点
 //        create canvas and draw on bitmap
-        canvas.drawText("create canvas and draw on bitmap",0,60,paint);
+        canvas.drawText("create canvas and draw on bitmap", 0, 60, paint);
         iv1.setImageBitmap(bitmap);
 
 
     }
+
+    public Bitmap getCircleCornerBitmap(Bitmap bitmap){
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Bitmap circleCornerBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
+        return circleCornerBitmap;
+    }
+
+
 }

@@ -103,12 +103,23 @@ public class CustomView extends View {
 
         canvas.translate(300,-100);
         canvas.rotate(-25);
-//        剪裁一部分  剪裁后再绘制只会在剪裁的部分显示
-        canvas.clipRect(new Rect(100,500,400,800));
+//        剪裁一部分  剪裁后再绘制只会在剪裁的部分显示，
+//        所以需要使用canvas.save()和canvas.restore()将新图层合并到原图层
+        canvas.save();
+        canvas.clipRect(new Rect(100,500,600,800));
         canvas.drawColor(Color.argb(0x33,0x5f,0x2c,0xe9));
         mPaint.setTextSize(60);
         mPaint.setColor(Color.rgb(0xff,0xff,0xff));
-        canvas.drawText("Android",80,580,mPaint);
+        canvas.drawText("Android 剪裁部分",80,580,mPaint);
         mPaint.reset();
+        canvas.restore();
+
+        mPaint.setTextSize(60);
+        mPaint.setColor(Color.rgb(0xff,0xff,0xff));
+        canvas.drawText("裁剪后在裁剪外部绘制文字",0,250,mPaint);
+
+
+
+
     }
 }

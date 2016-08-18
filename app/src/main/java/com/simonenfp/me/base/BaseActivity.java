@@ -47,7 +47,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
         ViewGroup contentParent = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_base, null);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         contentParent.addView(LayoutInflater.from(this).inflate(layoutResID,null),layoutParams);
 

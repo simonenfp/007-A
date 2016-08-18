@@ -1,87 +1,29 @@
 package com.simonenfp.me.module.ui.activity;
 
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.content.Intent;
 import android.os.Bundle;
-import com.flyco.tablayout.SlidingTabLayout;
+import android.view.View;
+
+import com.orhanobut.logger.Logger;
 import com.simonenfp.me.R;
-import com.simonenfp.me.adapter.MyFragmentPagerAdapter;
 import com.simonenfp.me.base.BaseActivity;
-import com.simonenfp.me.module.presenter.MainActivityPresenter;
-import com.simonenfp.me.module.ui.fragment.FirstFragment;
-import com.simonenfp.me.module.ui.fragment.SecondFragment;
-import com.simonenfp.me.module.ui.fragment.ThirdFragment;
-import com.simonenfp.me.module.view.MainActivityView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends BaseActivity implements MainActivityView {
-
-    private List<String> mListTabTitles;
-    private List<Fragment> mListFragments;
-    private SlidingTabLayout mTabLayout;
-    private ViewPager mViewPager;
-    
-    private FragmentPagerAdapter mFragmentPagerAdapter;
-
-    private FirstFragment mFirstFragment;
-    private SecondFragment mSecondFragment;
-    private ThirdFragment mThirdFragment;
-
-    //new a main presenter to interact with model
-    private MainActivityPresenter mPresenter = new MainActivityPresenter(this);
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mListTabTitles = new ArrayList<>();
-        mListFragments = new ArrayList<>();
-        initView();
-        //presenter get data
-        mPresenter.getTabData();
     }
 
-
-
-
-
-    private void initView() {
-
-
-        mTabLayout = (SlidingTabLayout) findViewById(R.id.tl_2);
-        mViewPager = (ViewPager)findViewById(R.id.activity_viewPager);
-
-        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),mListFragments,mListTabTitles);
-        mViewPager.setAdapter(mFragmentPagerAdapter);
-        mTabLayout.setViewPager(mViewPager);
-
-
-
+    public void onRetrofit(View view){
+        Intent intent = new Intent(mContext,RetrofitActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public void initTabLayoutTitle(List<String> list) {
-        initData(list);
+    public void onCustomView(View view){
+        Intent intent = new Intent(mContext,CusomViewActivity.class);
+        startActivity(intent);
     }
-    private void initData(List<String> list) {
-
-        mListTabTitles.addAll(list);
-
-
-        mFirstFragment = new FirstFragment();
-        mSecondFragment = new SecondFragment();
-        mThirdFragment = new ThirdFragment();
-        mListFragments.add(mFirstFragment);
-        mListFragments.add(mSecondFragment);
-        mListFragments.add(mThirdFragment);
-
-
-        mFragmentPagerAdapter.notifyDataSetChanged();
-        mTabLayout.notifyDataSetChanged();
-    }
-
 }

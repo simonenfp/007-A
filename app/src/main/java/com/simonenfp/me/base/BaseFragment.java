@@ -13,20 +13,31 @@ import android.view.View;
  */
 public class BaseFragment extends Fragment {
     protected Context mContext;
+    private boolean isDestroy;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isDestroy = false;
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isDestroy = true;
     }
 
     protected void showToast(String s){
-        Snackbar.make(getView(), s, Snackbar.LENGTH_SHORT).show();
+        if (!isDestroy) {
+            Snackbar.make(getView(), s, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
 }

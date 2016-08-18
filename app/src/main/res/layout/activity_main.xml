@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:tl="http://schemas.android.com/apk/res-auto"
-    tools:context=".module.ui.activity.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/common_safe_distance"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:id="@+id/linear1"
-
+    android:gravity="center_horizontal"
     >
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/tl_2"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#EEEEEE"
-        tl:tl_indicator_color="#000000"
-        tl:tl_indicator_height="1.5dp"
-        tl:tl_tab_padding="22dp"
-        tl:tl_tab_space_equal="true"
-        tl:tl_divider_color="@color/white"
-        tl:tl_textSelectColor="#000000"
-        tl:tl_textUnselectColor="@color/colorPrimary"
-        tl:tl_underline_color="#1A000000"
-        tl:tl_underline_height="1dp"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/activity_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            >
-
-        </android.support.v4.view.ViewPager>
-
-
+    <TextView
+        android:id="@+id/tv_main_retrofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_main_tv"
+        android:padding="@dimen/main_tv_shape_radius"
+        android:text="@string/main_tv_retrofit"
+        android:textSize="18sp"
+        android:textColor="@color/selector_main_text"
+        android:onClick="onRetrofit"
+        />
+    <TextView
+        android:id="@+id/tv_main_custom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_safe_distance"
+        android:background="@drawable/shape_main_tv"
+        android:padding="@dimen/main_tv_shape_radius"
+        android:text="@string/main_tv_custom_view"
+        android:textSize="18sp"
+        android:textColor="@color/selector_main_text"
+        android:onClick="onCustomView"
+        />
 
 </LinearLayout>

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="activity_main_tab_title">
-        <item>@string/activity_main_tab_1</item>
-        <item>@string/activity_main_tab_2</item>
-        <item>@string/activity_main_tab_3</item>
-        <item>@string/activity_main_tab_1</item>
-        <item>@string/activity_main_tab_2</item>
-        <item>@string/activity_main_tab_3</item>
+    <string-array name="activity_retrofit_tab_title">
+        <item>@string/activity_retrofit_tab_1</item>
+        <item>@string/activity_retrofit_tab_2</item>
+        <item>@string/activity_retrofit_tab_3</item>
     </string-array>
 </resources>

@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">007-A</string>
-    <string name="activity_main_tab_1">首页</string>
-    <string name="activity_main_tab_2">发现</string>
-    <string name="activity_main_tab_3">个人中心</string>
+    <string name="activity_retrofit_tab_1">首页</string>
+    <string name="activity_retrofit_tab_2">发现</string>
+    <string name="activity_retrofit_tab_3">个人中心</string>
 
+    <!--main-->
+    <string name="main_tv_retrofit">Retrofit+RxJava应用</string>
+    <string name="main_tv_custom_view">自定义View示例</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_custom_view">CustomViewActivity</string>
+
 </resources>

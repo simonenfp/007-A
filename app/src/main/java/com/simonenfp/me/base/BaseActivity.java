@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.simonenfp.me.R;
 import com.simonenfp.me.app.MyActivityManager;
@@ -32,7 +33,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initActionBarView() {
         //back button
-         ivBack =  (ImageView)findViewById(R.id.iv_main_top_bar_back);
+         ivBack =  (ImageView)findViewById(R.id.iv_custom_bar_back);
         if (ivBack != null){
             ivBack.setOnClickListener(this);
         }
@@ -46,13 +47,14 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
         ViewGroup contentParent = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_base, null);
 
-        contentParent.addView(LayoutInflater.from(this).inflate(layoutResID,null));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        contentParent.addView(LayoutInflater.from(this).inflate(layoutResID,null),layoutParams);
 
         super.setContentView(contentParent);
 
         //         Hide the status bar.
         StatusBarTools.dealStatusBar(this);
-
         initActionBarView();
 
     }
@@ -66,7 +68,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.iv_main_top_bar_back:
+            case R.id.iv_custom_bar_back:
                 finish();
                 break;
         }

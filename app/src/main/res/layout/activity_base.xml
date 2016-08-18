@@ -3,17 +3,17 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_include_activity_main_top_bar"
+              android:background="@color/color_theme"
     >
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/include_activity_top_bar_height"
-        android:background="@color/color_include_activity_main_top_bar"
+        android:layout_height="@dimen/height_custom_bar"
+        android:background="@color/color_theme"
         >
 
         <ImageView
-            android:id="@+id/iv_main_top_bar_back"
+            android:id="@+id/iv_custom_bar_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_back"

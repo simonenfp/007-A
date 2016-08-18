@@ -2,6 +2,17 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="include_activity_top_bar_height">48dp</dimen>
+
+    <!--customBar height-->
+    <dimen name="height_custom_bar">48dp</dimen>
+
+    <!--common-->
+    <dimen name="common_safe_distance">10dp</dimen>
+
+    <!--main-->
+    <dimen name="main_tv_shape_radius">5dp</dimen>
+    <dimen name="main_tv_shape_shape_stroke_with">1dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
 
 </resources>

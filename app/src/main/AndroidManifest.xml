@@ -27,7 +27,9 @@
             android:name=".module.ui.activity.RetrofitActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
-        <activity android:name=".module.ui.activity.CusomViewActivity">
+        <activity android:name=".module.ui.activity.CustomViewPrimaryActivity">
+        </activity>
+        <activity android:name=".module.ui.activity.CustomViewExample1Activity">
         </activity>
     </application>
 

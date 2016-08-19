@@ -18,21 +18,23 @@
         android:padding="@dimen/common_safe_distance"
 
         >
+
     <ImageView
         android:id="@+id/iv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
-    <com.simonenfp.me.widget.CustomView
-        android:layout_marginTop="@dimen/common_safe_distance"
-        android:layout_width="340dp"
-        android:layout_height="600dp"
         />
         <ImageView
             android:id="@+id/iv_2"
             android:layout_marginTop="@dimen/common_safe_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+    <com.simonenfp.me.widget.CustomView
+        android:layout_marginTop="@dimen/common_safe_distance"
+        android:layout_width="340dp"
+        android:layout_height="640dp"
+        />
+
 
 
     </LinearLayout>

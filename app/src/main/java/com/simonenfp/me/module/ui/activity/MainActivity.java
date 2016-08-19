@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.simonenfp.me.R;
 import com.simonenfp.me.base.BaseActivity;
 
@@ -22,8 +21,12 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void onCustomView(View view){
-        Intent intent = new Intent(mContext,CusomViewActivity.class);
+    public void onCustomViewPrimary(View view){
+        Intent intent = new Intent(mContext,CustomViewPrimaryActivity.class);
+        startActivity(intent);
+    }
+    public void onCustomViewExample1(View view){
+        Intent intent = new Intent(mContext,CustomViewExample1Activity.class);
         startActivity(intent);
     }
 }

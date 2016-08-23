@@ -32,6 +32,8 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         return CommonViewHolder.get(mContext,parent,mLayoutId);
     }
 
+
+
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         convert(holder, mDatas.get(position));

@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/common_safe_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    <com.simonenfp.me.widget.CustomView
+    <com.simonenfp.me.widget.CustomView1
         android:layout_marginTop="@dimen/common_safe_distance"
         android:layout_width="340dp"
         android:layout_height="640dp"

@@ -22,20 +22,20 @@ import com.simonenfp.me.R;
 /**
  * Created by simonenfp on 2016/8/18.
  */
-public class CustomView extends View {
+public class CustomView1 extends View {
     Paint mPaint;
     Context mContext;
-    public CustomView(Context context) {
+    public CustomView1(Context context) {
         super(context);
         initCustomView(context);
     }
 
-    public CustomView(Context context, AttributeSet attrs) {
+    public CustomView1(Context context, AttributeSet attrs) {
         super(context, attrs);
         initCustomView(context);
     }
 
-    public CustomView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomView1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initCustomView(context);
     }

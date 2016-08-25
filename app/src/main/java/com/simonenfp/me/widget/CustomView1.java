@@ -30,6 +30,7 @@ public class CustomView1 extends View {
         initCustomView(context);
     }
 
+
     public CustomView1(Context context, AttributeSet attrs) {
         super(context, attrs);
         initCustomView(context);

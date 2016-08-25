@@ -61,8 +61,6 @@ public class CustomView2 extends View {
         if (widthMode == MeasureSpec.EXACTLY){
             width = widthSize;
         }else {
-            mPaint.setTextSize(contentTextSize);
-            mPaint.getTextBounds(contentText,0,contentText.length(),mBound);
             float textWidth = mBound.width();
             width = (int)(getPaddingLeft() + textWidth + getPaddingRight());
         }
@@ -72,8 +70,6 @@ public class CustomView2 extends View {
             height = heightSize;
         } else
         {
-            mPaint.setTextSize(contentTextSize);
-            mPaint.getTextBounds(contentText, 0, contentText.length(), mBound);
             float textHeight = mBound.height();
             height = (int) (getPaddingTop() + textHeight + getPaddingBottom());
         }
@@ -84,7 +80,6 @@ public class CustomView2 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mPaint.setColor(contentTextColor);
         Logger.d(mBound.left+","+mBound.top+","+mBound.right+","+mBound.bottom);
         canvas.drawText(contentText, 0,contentTextSize, mPaint);
 

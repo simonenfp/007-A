@@ -29,18 +29,24 @@ public class CustomVolume extends View {
     protected void onDraw(Canvas canvas) {
         int radius = 100;
         int rx = radius + mCircleWidth/2 + 300;
-        int ry = radius + mCircleWidth/2 + 600;
+        int ry = radius + mCircleWidth/2 + 400;
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.argb(0x33,0x5f,0x2c,0xe9));
         mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(rx,ry,radius,mPaint);
 
+
+
         //绘制圆弧
         mPaint.setColor(Color.argb(0xff,0x43,0x93,0x12));
         mPaint.setStrokeWidth(mCircleWidth-10);
         mRectF = new RectF(rx - radius,ry - radius,rx + radius,ry + radius);
         canvas.drawArc(mRectF,0,arc,false,mPaint);
+
+
+
+//        canvas.drawLine(320,800,520,800,mPaint);
 
         //绘制百分比
         mPaint.reset();
@@ -65,13 +71,18 @@ public class CustomVolume extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 int deltaY = (y - lastY)/2;
-                if (deltaY >= 0){
-                    arc = arc - deltaY > 0 ? arc - deltaY : 0;
-
+                int deltaArc = arc - deltaY;
+                if (deltaArc >= 0 && deltaArc <= 360){
+                    arc = deltaArc;
+                }else if (deltaArc < 0){
+                    arc = 0;
                 }else {
-                    arc = -deltaY + arc > 360 ? 360 : -deltaY + arc;
+                    arc = 360;
                 }
-                progress = arc*100/360 ;
+//                arc = arc - deltaY >= 0 && arc - deltaY <= 360 ? arc - deltaY : arc;
+
+                progress = arc * 100 / 360 ;
+
                 postInvalidate();
                 break;
             case MotionEvent.ACTION_UP:

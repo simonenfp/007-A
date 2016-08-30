@@ -24,7 +24,7 @@ public class StatusBarTools {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             Window window = activity.getWindow();
 
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
             //set transparent status and let main layout extend to status
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //set transparent navigation and let main layout extend to navigation
@@ -35,33 +35,34 @@ public class StatusBarTools {
             //set contentView rootView padding in order to set aside the location of the power strip
             View rootView = mContentView.getChildAt(0);
             if (rootView != null){
-//                rootView.setFitsSystemWindows(true);
-                rootView.setPadding(0,getStatusBarHeight(activity),0,0);
+                rootView.setFitsSystemWindows(true);
+//                rootView.setPadding(0,getStatusBarHeight(activity),0,0);
             }
         }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
 
 
             Window window = activity.getWindow();
 
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            window.getDecorView().setSystemUiVisibility(
+                    //Let the main layout extend to status
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     //Let the main layout extend to navigation
 //                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                    |
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             //
 //            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
             //set navigation transparent
-            window.setNavigationBarColor(Color.TRANSPARENT);
+//            window.setNavigationBarColor(Color.TRANSPARENT);
 
 
 
             ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
             View mChildView = mContentView.getChildAt(0);
             if (mChildView != null) {
-//                ViewCompat.setFitsSystemWindows(mChildView, true);
-                mChildView.setPadding(0,getStatusBarHeight(activity),0,0);
+                ViewCompat.setFitsSystemWindows(mChildView, true);
+//                mChildView.setPadding(0,getStatusBarHeight(activity),0,0);
             }
         }
     }

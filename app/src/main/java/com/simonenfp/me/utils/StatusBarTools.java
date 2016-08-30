@@ -24,7 +24,7 @@ public class StatusBarTools {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             Window window = activity.getWindow();
 
-
+            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             //set transparent status and let main layout extend to status
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //set transparent navigation and let main layout extend to navigation
@@ -43,6 +43,7 @@ public class StatusBarTools {
 
             Window window = activity.getWindow();
 
+            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     //Let the main layout extend to navigation

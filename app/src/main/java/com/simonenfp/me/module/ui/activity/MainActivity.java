@@ -21,12 +21,24 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void onCustomViewPrimary(View view){
-        Intent intent = new Intent(mContext,CustomViewPrimaryActivity.class);
-        startActivity(intent);
-    }
-    public void onCustomViewExample1(View view){
-        Intent intent = new Intent(mContext,CustomViewExample1Activity.class);
-        startActivity(intent);
+    public void onCustomView(View view){
+        Intent intent = null;
+        switch (view.getId()){
+            case R.id.tv_main_custom_view_primary:
+                intent = new Intent(mContext,CustomViewPrimaryActivity.class);
+                break;
+            case R.id.tv_main_custom_view_example:
+                intent = new Intent(mContext,CustomViewExample1Activity.class);
+                break;
+            case R.id.tv_main_custom_round_progress:
+                intent = new Intent(mContext,CustomRoundProgressActivity.class);
+                break;
+            default:
+                break;
+        }
+        if (intent != null){
+            startActivity(intent);
+        }
+
     }
 }

@@ -18,8 +18,4 @@ public class CustomViewExample1Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view_example1);
     }
-
-
-
-
 }

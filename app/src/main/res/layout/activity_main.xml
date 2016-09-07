@@ -29,7 +29,7 @@
         android:text="@string/main_tv_custom_view_primary"
         android:textSize="18sp"
         android:textColor="@color/selector_main_text"
-        android:onClick="onCustomViewPrimary"
+        android:onClick="onCustomView"
         />
     <TextView
         android:id="@+id/tv_main_custom_view_example"
@@ -41,7 +41,19 @@
         android:text="@string/main_tv_custom_view_example1"
         android:textSize="18sp"
         android:textColor="@color/selector_main_text"
-        android:onClick="onCustomViewExample1"
+        android:onClick="onCustomView"
+        />
+    <TextView
+        android:id="@+id/tv_main_custom_round_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_safe_distance"
+        android:background="@drawable/shape_main_tv"
+        android:padding="@dimen/main_tv_shape_radius"
+        android:text="@string/main_tv_custom_round_progress"
+        android:textSize="18sp"
+        android:textColor="@color/selector_main_text"
+        android:onClick="onCustomView"
         />
 
 </LinearLayout>

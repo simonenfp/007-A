@@ -16,7 +16,6 @@
         <activity
             android:name=".module.ui.activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,6 +30,8 @@
         <activity android:name=".module.ui.activity.CustomViewPrimaryActivity">
         </activity>
         <activity android:name=".module.ui.activity.CustomViewExample1Activity">
+        </activity>
+        <activity android:name=".module.ui.activity.CustomRoundProgressActivity">
         </activity>
     </application>
 

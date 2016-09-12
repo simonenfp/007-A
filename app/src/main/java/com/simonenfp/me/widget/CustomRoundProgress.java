@@ -36,8 +36,8 @@ public class CustomRoundProgress extends View {
 
     //RelativeLayout中使用会多次调用onMeasure，
     // 每次OnMeasure宽高赋值无规律，会导致最终宽高有误，设此标识，仅记录第一次size
-    boolean mIsMeasure = false;
-    int mViewSize;
+//    boolean mIsMeasure = false;
+//    int mViewSize;
     int mDefaultRadius = 200;
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -47,26 +47,22 @@ public class CustomRoundProgress extends View {
         int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        Logger.d("widthSpecSize:"+widthSpecSize+" heightSpecSize:"+heightSpecSize);
-        Logger.d("widthSpecMode:"+widthSpecMode+"heightSpecMode:"+heightSpecMode);
+        Logger.d("widthSpecMode:"+widthSpecMode+" heightSpecMode"+heightSpecMode);
+        Logger.d("widthSpecSize:"+widthSpecSize+" heightSpecSize"+heightSpecSize);
+
         if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST){
             setMeasuredDimension(mDefaultRadius,mDefaultRadius);
         }else if (widthSpecMode == MeasureSpec.AT_MOST){
             setMeasuredDimension(mDefaultRadius,heightSpecSize);
         }else if (heightSpecMode == MeasureSpec.AT_MOST){
-            Logger.d("高是wrap_content");
             setMeasuredDimension(widthSpecSize,mDefaultRadius);
         }
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
-        Logger.d("getMeasuredWidth:"+width+" getMeasuredHeight:"+height);
-        if (!mIsMeasure){
-            mViewSize = ((height < width ? height : width)+mProgressWidth);
-        }
+        Logger.d("width000:"+width+" height000:"+height);
+        int mViewSize = ((height < width ? height : width));
         setMeasuredDimension(mViewSize,mViewSize);
-        Logger.d("getMeasuredWidth1111:"+width+" getMeasuredHeight1111:"+height);
-        mIsMeasure = true;
-
+        Logger.d("width111:"+getMeasuredWidth()+" height111:"+getMeasuredHeight());
     }
 
 

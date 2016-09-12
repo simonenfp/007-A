@@ -50,6 +50,7 @@ public class CustomRoundProgress extends View {
         Logger.d("widthSpecMode:"+widthSpecMode+" heightSpecMode"+heightSpecMode);
         Logger.d("widthSpecSize:"+widthSpecSize+" heightSpecSize"+heightSpecSize);
 
+
         if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST){
             setMeasuredDimension(mDefaultRadius,mDefaultRadius);
         }else if (widthSpecMode == MeasureSpec.AT_MOST){
@@ -90,14 +91,20 @@ public class CustomRoundProgress extends View {
     protected void onDraw(Canvas canvas) {
 //        super.onDraw(canvas);
         //画个圆
-        mPaint.setColor(Color.GREEN);
+
         mPaint.setStrokeWidth(mProgressWidth);
         mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
+//        canvas.drawColor(Color.BLUE);
         getDrawingRect(mRectBound);
-        canvas.drawCircle(mRectBound.centerX(),mRectBound.centerY(),mRectBound.width()/2 - mProgressWidth/2,mPaint);
-        PorterDuffXfermode mode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
+
+        mPaint.setColor(Color.BLUE);
+        canvas.drawRect(mRectBound,mPaint);
+
+        mPaint.setColor(Color.GREEN);
+        mPaint.setStyle(Paint.Style.STROKE);
+        PorterDuffXfermode mode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
         mPaint.setXfermode(mode);
+        canvas.drawCircle(mRectBound.centerX(),mRectBound.centerY(),mRectBound.width()/2 - mProgressWidth/2,mPaint);
 //        canvas.drawCircle();
 
     }

@@ -2,12 +2,18 @@ package com.simonenfp.me.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -68,9 +74,13 @@ public class CustomRoundProgress extends View {
 
 
     /*
-       * view占据的矩形
+       * view占据的矩形Rect
        * */
     private Rect mRectBound;
+    /*
+      * view占据的矩形RectF
+      * */
+    private RectF mRectFBound;
     /*
     * 画笔
     * */
@@ -81,31 +91,103 @@ public class CustomRoundProgress extends View {
     * */
     private int mProgressWidth;
 
+    /*
+    * 中心文字
+    * */
+    private String mCenterText;
+    /*
+    * 中心文字占地
+    * */
+    private Rect mTextRect;
+
+    private long curTime ;
+
     private void init(){
         mPaint = new Paint();
         mProgressWidth = 20;
         mRectBound = new Rect();
+        mRectFBound = new RectF();
+        mTextRect = new Rect();
+        mCenterText = "跳过跳过跳过";
+
+        curTime = System.currentTimeMillis();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 //        super.onDraw(canvas);
-        //画个圆
 
-        mPaint.setStrokeWidth(mProgressWidth);
+        //设置绘制区的矩形，为圆环外界留出圆环宽度一半的大小
+        mRectBound.set(mProgressWidth/2,mProgressWidth/2,getWidth() - mProgressWidth/2,getHeight() - mProgressWidth/2);
+
+        mRectFBound.set(mRectBound);
         mPaint.setAntiAlias(true);
-//        canvas.drawColor(Color.BLUE);
-        getDrawingRect(mRectBound);
+        //清除正方形背景颜色
+        setBackgroundColor(Color.TRANSPARENT);
 
+
+//        画实心背景 半径为矩形区域减去圆环宽度的一半
         mPaint.setColor(Color.BLUE);
-        canvas.drawRect(mRectBound,mPaint);
-
-        mPaint.setColor(Color.GREEN);
-        mPaint.setStyle(Paint.Style.STROKE);
-        PorterDuffXfermode mode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
-        mPaint.setXfermode(mode);
+        mPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(mRectBound.centerX(),mRectBound.centerY(),mRectBound.width()/2 - mProgressWidth/2,mPaint);
+
+
+
+//        canvas.drawCircle(mRectBound.centerX(),mRectBound.centerY(),mRectBound.width()/2 - mProgressWidth/2,mPaint);
 //        canvas.drawCircle();
 
+        //画中心文字 中心文字起点为左下，文字绘制在圆形中间位置
+        mPaint.setColor(Color.RED);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextSize(30);
+        if (change){
+            mCenterText = "ddddd";
+            change = false;
+        }else {
+            mCenterText = "ssssss";
+            change = true;
+        }
+        mPaint.getTextBounds(mCenterText,0,mCenterText.length(),mTextRect);
+        canvas.drawText(mCenterText,mRectBound.centerX() - mTextRect.width()/2,mRectBound.centerY() + mTextRect.height()/2,mPaint);
+
+//        画圆环   因为圆环有宽度，所以是环的中间位置与矩形四边相切
+        mPaint.setColor(Color.GREEN);
+        mPaint.setStrokeWidth(mProgressWidth);
+        mPaint.setStyle(Paint.Style.STROKE);
+        canvas.drawArc(mRectFBound,0,360*((timeMillis - d)/timeMillis),false,mPaint);
+        Logger.d("ddddddddddd:"+d);
+
+
     }
+    private boolean change = true;
+    /**
+     * 进度时间。
+     */
+    private long timeMillis = 3000;
+    /*
+    * 总进度
+    * */
+    private int progress = 100;
+    private long d = 0;
+
+    public void updateProgress(){
+
+        post(pro);
+
+
+    }
+
+    private Runnable pro = new Runnable() {
+        @Override
+        public void run() {
+
+            if (d <= timeMillis){
+                d = d+1;
+                invalidate();
+
+
+                postDelayed(pro, timeMillis / 10);
+            }
+        }
+    };
 }

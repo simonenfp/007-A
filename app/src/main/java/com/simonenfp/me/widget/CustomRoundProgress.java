@@ -16,7 +16,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
@@ -38,6 +42,7 @@ public class CustomRoundProgress extends View {
     public CustomRoundProgress(Context context,AttributeSet attributeSet,int defStyleAttr){
         super(context,attributeSet,defStyleAttr);
         init();
+
     }
 
     //RelativeLayout中使用会多次调用onMeasure，
@@ -53,8 +58,8 @@ public class CustomRoundProgress extends View {
         int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        Logger.d("widthSpecMode:"+widthSpecMode+" heightSpecMode"+heightSpecMode);
-        Logger.d("widthSpecSize:"+widthSpecSize+" heightSpecSize"+heightSpecSize);
+//        Logger.d("widthSpecMode:"+widthSpecMode+" heightSpecMode"+heightSpecMode);
+//        Logger.d("widthSpecSize:"+widthSpecSize+" heightSpecSize"+heightSpecSize);
 
 
         if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST){
@@ -66,10 +71,10 @@ public class CustomRoundProgress extends View {
         }
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
-        Logger.d("width000:"+width+" height000:"+height);
+//        Logger.d("width000:"+width+" height000:"+height);
         int mViewSize = ((height < width ? height : width));
         setMeasuredDimension(mViewSize,mViewSize);
-        Logger.d("width111:"+getMeasuredWidth()+" height111:"+getMeasuredHeight());
+//        Logger.d("width111:"+getMeasuredWidth()+" height111:"+getMeasuredHeight());
     }
 
 
@@ -100,9 +105,9 @@ public class CustomRoundProgress extends View {
     * */
     private Rect mTextRect;
 
-    private long curTime ;
 
     private void init(){
+
         mPaint = new Paint();
         mProgressWidth = 20;
         mRectBound = new Rect();
@@ -110,7 +115,8 @@ public class CustomRoundProgress extends View {
         mTextRect = new Rect();
         mCenterText = "跳过跳过跳过";
 
-        curTime = System.currentTimeMillis();
+        //清除正方形背景颜色
+        setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -122,8 +128,7 @@ public class CustomRoundProgress extends View {
 
         mRectFBound.set(mRectBound);
         mPaint.setAntiAlias(true);
-        //清除正方形背景颜色
-        setBackgroundColor(Color.TRANSPARENT);
+
 
 
 //        画实心背景 半径为矩形区域减去圆环宽度的一半
@@ -150,44 +155,54 @@ public class CustomRoundProgress extends View {
         mPaint.getTextBounds(mCenterText,0,mCenterText.length(),mTextRect);
         canvas.drawText(mCenterText,mRectBound.centerX() - mTextRect.width()/2,mRectBound.centerY() + mTextRect.height()/2,mPaint);
 
-//        画圆环   因为圆环有宽度，所以是环的中间位置与矩形四边相切
+        //        画圆环   因为圆环有宽度，所以是环的中间位置与矩形四边相切
         mPaint.setColor(Color.GREEN);
         mPaint.setStrokeWidth(mProgressWidth);
         mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawArc(mRectFBound,0,360*((timeMillis - d)/timeMillis),false,mPaint);
-        Logger.d("ddddddddddd:"+d);
+        canvas.drawArc(mRectFBound,0,mArc,false,mPaint);
+//        Logger.d("mArc:"+mArc/389);
 
-
+        updateProgress();
     }
+
+
+    private int mArc = 0;
     private boolean change = true;
     /**
      * 进度时间。
      */
-    private long timeMillis = 3000;
+    private int mDuration = 3000;
     /*
     * 总进度
     * */
-    private int progress = 100;
-    private long d = 0;
-
-    public void updateProgress(){
-
-        post(pro);
+    private int progress = 0;
 
 
+    private long mStartTime ;
+    private boolean mStart = false;
+    private float mDurationReciprocal;
+    public void startRun(int duration){
+        mDuration = duration;
+        mStartTime =  AnimationUtils.currentAnimationTimeMillis();
+        mStart = true;
+        mDurationReciprocal = 1.0f / (float) mDuration;
+        updateProgress();
     }
 
-    private Runnable pro = new Runnable() {
-        @Override
-        public void run() {
-
-            if (d <= timeMillis){
-                d = d+1;
-                invalidate();
-
-
-                postDelayed(pro, timeMillis / 10);
-            }
+    public void updateProgress(){
+        if (!mStart){
+            return;
         }
-    };
+        int timePass = (int) (AnimationUtils.currentAnimationTimeMillis() - mStartTime);
+        if (progress < 100){
+            float x = timePass * mDurationReciprocal;
+            Logger.d("xxxxxxxxx:"+x);
+//            progress = (int) (progress * x);
+            mArc = Math.round(x * 360);
+//            Logger.d("progress:"+progress);
+            invalidate();
+
+        }
+    }
+
 }

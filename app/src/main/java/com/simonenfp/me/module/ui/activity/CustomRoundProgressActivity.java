@@ -27,7 +27,7 @@ public class CustomRoundProgressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Logger.d("onClick");
-                progress.updateProgress();
+                progress.startRun(3000);
             }
         });
 

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    
+    <declare-styleable name="CustomCircleProgress">
+        <attr name="centerText" format="string"/>
+        <attr name="centerTextColor" format="color"/>
+        <attr name="centerTextSize" format="dimension"/>
+        <attr name="circleBackground" format="color" />
+        <attr name="ringProgressColor" format="color"/>
+        <attr name="ringProgressWidth" format="dimension"/>
+        <attr name="ringProgressBackground" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="CustomView2">
         <attr name="contentText" format="string"/>
         <attr name="contentTextColor" format="color"/>

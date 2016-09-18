@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
                 intent = new Intent(mContext,CustomViewExample1Activity.class);
                 break;
             case R.id.tv_main_custom_round_progress:
-                intent = new Intent(mContext,CustomRoundProgressActivity.class);
+                intent = new Intent(mContext,CustomCircleProgressActivity.class);
                 break;
             default:
                 break;

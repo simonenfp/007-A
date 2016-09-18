@@ -3,17 +3,68 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:background="@color/white"
-    >
+    android:paddingTop="10dp"
 
-    <com.simonenfp.me.widget.CustomRoundProgress
-        android:id="@+id/progress"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:text="1111111111"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:background="@color/colorAccent"
+    >
+    <TextView
+        android:id="@+id/begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:background="@drawable/shape_main_tv"
+        android:textColor="@color/colorPrimary"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        >
+        <com.simonenfp.me.widget.CustomCircleProgress
+            xmlns:circleProgress="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            circleProgress:centerTextColor="@color/white"
+            circleProgress:centerText="请稍等"
+            circleProgress:centerTextSize="12sp"
+            circleProgress:ringProgressColor="@color/black"
+            circleProgress:ringProgressWidth="3dp"
+            circleProgress:ringProgressBackground="@color/purple1"
+            circleProgress:circleBackground="@color/transparent_gray"
+            android:layout_margin="10dp"
+            />
+        <com.simonenfp.me.widget.CustomCircleProgress
+            xmlns:circleProgress="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            circleProgress:centerTextColor="@color/colorAccent"
+            circleProgress:ringProgressWidth="6dp"
+            circleProgress:ringProgressColor="@color/color_purple"
+            circleProgress:centerTextSize="20sp"
+            circleProgress:circleBackground="@color/transparent_colorPrimary"
+            android:layout_margin="10dp"
+            />
+        <com.simonenfp.me.widget.CustomCircleProgress
+            xmlns:circleProgress="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            circleProgress:centerText="跳过广告"
+            circleProgress:circleBackground="@color/colorAccent"
+            />
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

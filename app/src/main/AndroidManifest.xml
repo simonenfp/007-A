@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".module.ui.activity.CustomViewExample1Activity">
         </activity>
-        <activity android:name=".module.ui.activity.CustomRoundProgressActivity">
+        <activity android:name=".module.ui.activity.CustomCircleProgressActivity">
         </activity>
     </application>
 

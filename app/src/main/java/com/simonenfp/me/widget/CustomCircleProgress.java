@@ -254,7 +254,6 @@ public class CustomCircleProgress extends View {
                 mArc = Math.round(360 * (1-mCurrProgress));
                 mPercent = Math.round(100 * (1-mCurrProgress));
             }
-
             postInvalidate();
         }
     }

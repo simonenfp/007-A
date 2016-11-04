@@ -3,6 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="@dimen/main_tv_shape_radius"/>
     <solid android:color="@color/white"/>
-    <stroke android:color="@color/gray" android:width="@dimen/main_tv_shape_shape_stroke_with"/>
+    <stroke android:color="@color/gray1" android:width="@dimen/main_tv_shape_shape_stroke_with"/>
 
 </shape>

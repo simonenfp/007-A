@@ -34,7 +34,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
     * 通过id获取holder中的控件
     *
     * */
-    public <T extends View>T getView(int viewId){
+    public <T extends View> T getView(int viewId){
         View view = mViews.get(viewId);
         if (view == null){
             view = mConvertView.findViewById(viewId);

@@ -9,6 +9,8 @@
     <string name="main_tv_custom_view_primary">自定义View简单图形绘制</string>
     <string name="main_tv_custom_view_example1">自定义View案例1</string>
     <string name="main_tv_custom_round_progress">自定义view圆形进度倒计时</string>
+    <string name="main_tv_animator">动画</string>
+    <string name="click_me">点我啊</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_custom_view">CustomViewActivity</string>

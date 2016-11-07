@@ -17,10 +17,11 @@
         android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/sel_usual_bg"
+        android:visibility="gone"
         />
     <com.simonenfp.me.loading.AnimationView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         />
 
 </LinearLayout>

@@ -18,6 +18,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.view.animation.LinearInterpolator;
 
+import com.orhanobut.logger.Logger;
 import com.simonenfp.me.utils.DisplayUtils;
 
 import java.util.Random;
@@ -49,6 +50,7 @@ public class LoadingDrawable extends Drawable implements Animatable{
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.BLUE);
         mPaint.setStrokeWidth(DisplayUtils.dip2px(mContext,3.0f));
+
     }
     private ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f,1.0f);
 
@@ -100,6 +102,7 @@ public class LoadingDrawable extends Drawable implements Animatable{
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
         mBound.set(bounds);
+        Logger.d("left:"+mBound.left + " top:" + mBound.top + " right:" + mBound.right + " bottom:" + mBound.bottom);
 
     }
 
@@ -116,12 +119,16 @@ public class LoadingDrawable extends Drawable implements Animatable{
         mControl1.y = mControl1.y + 200;
 
 
+        mPaint.setColor(Color.RED);
         canvas.drawPoint(mStart.x,mStart.y,mPaint);
         canvas.drawPoint(mEnd.x,mEnd.y,mPaint);
         canvas.drawPoint(mControl1.x,mControl1.y,mPaint);
 
         Path path = new Path();
+        path.moveTo(mStart.x,mStart.y);
         path.quadTo(mControl1.x,mControl1.y,mEnd.x,mEnd.y);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(Color.BLUE);
         canvas.drawPath(path,mPaint);
 
     }

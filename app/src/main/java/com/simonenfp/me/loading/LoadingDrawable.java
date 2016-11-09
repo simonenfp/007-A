@@ -79,8 +79,8 @@ public class LoadingDrawable extends Drawable implements Animatable{
         float[] tan = new float[2];
         mPathMeasure.getPosTan(0,pos,tan);
 
-        Logger.d("pos[0]:"+pos[0]+" pos[1]:"+pos[1]+" tan[0]:"+tan[0]+" tan[1]:"+tan[1]);
-        Logger.d("切线角度:"+Math.atan2(tan[1], tan[0])*180.0/Math.PI);
+//        Logger.d("pos[0]:"+pos[0]+" pos[1]:"+pos[1]+" tan[0]:"+tan[0]+" tan[1]:"+tan[1]);
+//        Logger.d("切线角度:"+Math.atan2(tan[1], tan[0])*180.0/Math.PI);
         path_search.lineTo(pos[0],pos[1]);
 
 
@@ -97,7 +97,7 @@ public class LoadingDrawable extends Drawable implements Animatable{
 
         canvas.translate(mBound.centerX(),mBound.centerY());
 
-        canvas.drawPath(path_search,mPaint);
+//        canvas.drawPath(path_search,mPaint);
         canvas.drawPath(path_circle,mPaint);
 
 
@@ -107,11 +107,15 @@ public class LoadingDrawable extends Drawable implements Animatable{
 
         Path dst = new Path();
 
-//        mPathMeasure.getSegment(0,)
+        Logger.d("start:"+ allLength * mAnimatedValue + " end:"+allLength);
+
+        mPathMeasure.getSegment(allLength * mAnimatedValue,allLength,dst,true);
+
+        canvas.drawPath(dst,mPaint);
 
 
     }
-    private ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f,0.0f);
+    private ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f,1.0f);
 
     private ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener(){
         @Override
@@ -125,7 +129,7 @@ public class LoadingDrawable extends Drawable implements Animatable{
     public void start() {
         valueAnimator.addUpdateListener(mValueAnimatorListener);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(3000);
+        valueAnimator.setDuration(2000);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.start();

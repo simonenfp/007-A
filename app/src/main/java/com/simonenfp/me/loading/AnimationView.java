@@ -12,7 +12,7 @@ import com.simonenfp.me.R;
  */
 
 public class AnimationView extends ImageView {
-    private LoadingDrawable loadingDrawable;
+    public LoadingDrawable loadingDrawable;
     public AnimationView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialize(context);
@@ -25,13 +25,13 @@ public class AnimationView extends ImageView {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-//        loadingDrawable.start();
+        loadingDrawable.start();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-//        loadingDrawable.stop();
+        loadingDrawable.stop();
     }
 
 

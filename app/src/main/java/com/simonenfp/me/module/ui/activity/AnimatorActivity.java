@@ -1,27 +1,19 @@
 package com.simonenfp.me.module.ui.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.simonenfp.me.R;
 import com.simonenfp.me.base.BaseActivity;
+import com.simonenfp.me.loading.AnimationView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class AnimatorActivity extends BaseActivity {
 
 
-
+    @Bind(R.id.av)
+    AnimationView av;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +21,7 @@ public class AnimatorActivity extends BaseActivity {
         setContentView(R.layout.activity_animator);
         ButterKnife.bind(this);
 
+        av.loadingDrawable.start();
 
     }
 

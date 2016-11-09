@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
@@ -35,11 +36,15 @@ public class LoadingDrawable extends Drawable implements Animatable{
 
     private RectF mBound = new RectF();
 
+    private Path path_search;
+    private Path path_circle;
+
+    private PathMeasure mPathMeasure;
+
     private static final int[] mColors = new int[]{
             Color.RED, Color.GREEN, Color.BLUE
     };
 
-    private Random mRandom = new Random();
 
     public LoadingDrawable(Context context){
         mContext = context;
@@ -47,40 +52,82 @@ public class LoadingDrawable extends Drawable implements Animatable{
     }
 
     public void initialize(){
+        initPaint();
+        initPath();
+    }
+
+    private void initPaint() {
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.BLUE);
-        mPaint.setStrokeWidth(DisplayUtils.dip2px(mContext,3.0f));
+        mPaint.setStrokeWidth(DisplayUtils.dip2px(mContext,5.0f));
+        mPaint.setStyle(Paint.Style.STROKE);
+    }
+
+    private void initPath() {
+        path_search = new Path();
+        path_circle = new Path();
+
+        RectF searchRectF = new RectF(-50,-50,50,50);//放大镜圆环
+        path_search.addArc(searchRectF,45,359.9f);
+
+        RectF circleRectF = new RectF(-100,-100,100,100);//外部圆环
+        path_circle.addArc(circleRectF,45,-359.9f);
+
+        mPathMeasure = new PathMeasure();
+        mPathMeasure.setPath(path_circle,false);
+        float[] pos = new float[2];
+        float[] tan = new float[2];
+        mPathMeasure.getPosTan(0,pos,tan);
+
+        Logger.d("pos[0]:"+pos[0]+" pos[1]:"+pos[1]+" tan[0]:"+tan[0]+" tan[1]:"+tan[1]);
+        Logger.d("切线角度:"+Math.atan2(tan[1], tan[0])*180.0/Math.PI);
+        path_search.lineTo(pos[0],pos[1]);
+
 
     }
-    private ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f,1.0f);
+
+
+    private float mAnimatedValue;
+
+
+    @Override
+    public void draw(Canvas canvas) {
+
+        canvas.drawRect(mBound,mPaint);
+
+        canvas.translate(mBound.centerX(),mBound.centerY());
+
+        canvas.drawPath(path_search,mPaint);
+        canvas.drawPath(path_circle,mPaint);
+
+
+        mPathMeasure.setPath(path_search,false);
+
+        float allLength = mPathMeasure.getLength();
+
+        Path dst = new Path();
+
+//        mPathMeasure.getSegment(0,)
+
+
+    }
+    private ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f,0.0f);
 
     private ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener(){
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
-            computer(animation.getAnimatedFraction());
+            mAnimatedValue = (float)animation.getAnimatedValue();
             invalidateSelf();
         }
     };
 
-    private AnimatorListenerAdapter mAnimatorListenerAdapter = new AnimatorListenerAdapter() {
-        @Override
-        public void onAnimationRepeat(Animator animation) {
-            super.onAnimationRepeat(animation);
-
-        }
-    };
-
-    private void computer(float progress){
-
-    }
-
     @Override
     public void start() {
         valueAnimator.addUpdateListener(mValueAnimatorListener);
-//        valueAnimator.addListener(mAnimatorListenerAdapter);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(1000);
+        valueAnimator.setDuration(3000);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.start();
     }
 
@@ -105,38 +152,11 @@ public class LoadingDrawable extends Drawable implements Animatable{
         Logger.d("left:"+mBound.left + " top:" + mBound.top + " right:" + mBound.right + " bottom:" + mBound.bottom);
 
     }
-
-    private PointF mStart = new PointF(0,0);
-    private PointF mEnd = new PointF(0,0);
-    private PointF mControl1 = new PointF(0,0);
-
-    @Override
-    public void draw(Canvas canvas) {
-
-        mEnd.x = mEnd.x + 200;
-        mEnd.y = mEnd.y + 0;
-        mControl1.x = mControl1.x + 80;
-        mControl1.y = mControl1.y + 200;
-
-
-        mPaint.setColor(Color.RED);
-        canvas.drawPoint(mStart.x,mStart.y,mPaint);
-        canvas.drawPoint(mEnd.x,mEnd.y,mPaint);
-        canvas.drawPoint(mControl1.x,mControl1.y,mPaint);
-
-        Path path = new Path();
-        path.moveTo(mStart.x,mStart.y);
-        path.quadTo(mControl1.x,mControl1.y,mEnd.x,mEnd.y);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.BLUE);
-        canvas.drawPath(path,mPaint);
-
-    }
-
     @Override
     public void setAlpha(int alpha) {
 
     }
+
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {

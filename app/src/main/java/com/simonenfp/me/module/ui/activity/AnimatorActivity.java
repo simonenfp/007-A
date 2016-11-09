@@ -1,10 +1,16 @@
 package com.simonenfp.me.module.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.simonenfp.me.R;
 import com.simonenfp.me.base.BaseActivity;
 
@@ -15,8 +21,7 @@ import butterknife.OnClick;
 public class AnimatorActivity extends BaseActivity {
 
 
-    @Bind(R.id.tv_animator)
-    TextView tvAnimator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +33,4 @@ public class AnimatorActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.tv_animator)
-    public void onClick() {
-        ObjectAnimator.ofInt(new WrapperView(tvAnimator),"width",500).setDuration(5000).start();
-    }
-    public class WrapperView{
-        private View mTargetView;
-        public WrapperView(View textView){
-            mTargetView = textView;
-        }
-        public void setWidth(int width){
-            mTargetView.getLayoutParams().width = width;
-            mTargetView.requestLayout();
-        }
-        public int getWidth(){
-            return mTargetView.getLayoutParams().width;
-        }
-    }
 }

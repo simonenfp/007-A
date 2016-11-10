@@ -21,8 +21,6 @@ public class AnimatorActivity extends BaseActivity {
         setContentView(R.layout.activity_animator);
         ButterKnife.bind(this);
 
-        av.loadingDrawable.start();
-
     }
 
 

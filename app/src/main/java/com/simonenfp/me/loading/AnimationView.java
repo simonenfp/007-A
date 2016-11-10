@@ -1,8 +1,8 @@
 package com.simonenfp.me.loading;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.simonenfp.me.R;
@@ -12,16 +12,27 @@ import com.simonenfp.me.R;
  */
 
 public class AnimationView extends ImageView {
+
     public LoadingDrawable loadingDrawable;
+
     public AnimationView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initialize(context);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.AnimationView);
+        int loadingDrawableId = typedArray.getInt(R.styleable.AnimationView_loadingDrawable,0);
+        if (loadingDrawableId == 0){
+            loadingDrawable = new SearchLoadingDrawable(context);
+            setImageDrawable(loadingDrawable);
+        }else if (loadingDrawableId == 1){
+            loadingDrawable = new MaterialLoadingDrawable(context);
+            setImageDrawable(loadingDrawable);
+        }
+
+        typedArray.recycle();
+
+
     }
 
-    private void initialize(Context context) {
-        loadingDrawable = new LoadingDrawable(context);
-        setImageDrawable(loadingDrawable);
-    }
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();

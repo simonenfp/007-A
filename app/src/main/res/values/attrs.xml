@@ -17,4 +17,12 @@
         <attr name="contentTextColor" format="color"/>
         <attr name="contentTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="AnimationView">
+        <attr name="loadingDrawable">
+            <enum name="SearchLoadingDrawable" value="0"/>
+            <enum name="MaterialLoadingDrawable" value="1"/>
+        </attr>
+
+    </declare-styleable>
 </resources>

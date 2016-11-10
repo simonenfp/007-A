@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +11,15 @@
 
     <com.simonenfp.me.loading.AnimationView
         android:id="@+id/av"
-        android:layout_width="360dp"
-        android:layout_height="360dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:loadingDrawable="SearchLoadingDrawable"
+        />
+
+    <com.simonenfp.me.loading.AnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:loadingDrawable="MaterialLoadingDrawable"
         />
 
 

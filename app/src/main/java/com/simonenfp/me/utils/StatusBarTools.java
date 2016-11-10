@@ -67,11 +67,11 @@ public class StatusBarTools {
         }
     }
     //Get status bar height
-    public static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+    public static float getStatusBarHeight(Context context) {
+        float result = 0;
+        float resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0) {
-            result = context.getResources().getDimensionPixelOffset(resId);
+            result = context.getResources().getDimensionPixelOffset((int)resId);
         }else if (resId == 0){
             result = DisplayUtils.dip2px(context,20);
         }

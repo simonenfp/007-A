@@ -22,5 +22,11 @@
         app:loadingDrawable="MaterialLoadingDrawable"
         />
 
+    <ImageView
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        />
+
 
 </LinearLayout>

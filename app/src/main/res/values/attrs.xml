@@ -22,6 +22,7 @@
         <attr name="loadingDrawable">
             <enum name="SearchLoadingDrawable" value="0"/>
             <enum name="MaterialLoadingDrawable" value="1"/>
+            <enum name="StripProgressBarDrawable" value="2"/>
         </attr>
 
     </declare-styleable>

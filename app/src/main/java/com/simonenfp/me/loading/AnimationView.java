@@ -26,6 +26,9 @@ public class AnimationView extends ImageView {
         }else if (loadingDrawableId == 1){
             loadingDrawable = new MaterialLoadingDrawable(context);
             setImageDrawable(loadingDrawable);
+        }else if (loadingDrawableId == 2){
+            loadingDrawable = new StripProgressBarDrawable(context);
+            setImageDrawable(loadingDrawable);
         }
 
         typedArray.recycle();

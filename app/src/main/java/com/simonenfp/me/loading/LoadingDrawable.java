@@ -23,6 +23,8 @@ public abstract class LoadingDrawable extends Drawable implements Animatable{
 
     protected RectF mBound = new RectF();
 
+    private final static long mDefaultDuration = 3000;
+
     public LoadingDrawable(Context context){
         setAnimator();
     }
@@ -52,7 +54,7 @@ public abstract class LoadingDrawable extends Drawable implements Animatable{
         valueAnimator = ValueAnimator.ofFloat(0.0f,1.0f);
         valueAnimator.addUpdateListener(mValueAnimatorListener);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(mDefaultDuration);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
     }
 
@@ -74,9 +76,12 @@ public abstract class LoadingDrawable extends Drawable implements Animatable{
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
         mBound.set(bounds);
-        Logger.d("left:"+mBound.left + " top:" + mBound.top + " right:" + mBound.right + " bottom:" + mBound.bottom);
+        initialize();
 
     }
+
+    protected abstract void initialize();
+
     @Override
     public int getOpacity() {
         //not sure,so be safe

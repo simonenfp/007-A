@@ -46,10 +46,11 @@ public class SearchLoadingDrawable extends LoadingDrawable{
     public SearchLoadingDrawable(Context context){
         super(context);
         mContext = context;
-        initialize();
+
     }
 
-    public void initialize(){
+    @Override
+    protected void initialize() {
         initPaint();
         initPath();
     }

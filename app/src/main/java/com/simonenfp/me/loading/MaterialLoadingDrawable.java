@@ -46,10 +46,9 @@ public class MaterialLoadingDrawable extends LoadingDrawable {
     public MaterialLoadingDrawable(Context context) {
         super(context);
         mContext = context;
-        initialize();
     }
-
-    private void initialize() {
+    @Override
+    public void initialize() {
         setAnimatorListener(mAnimatorListener);
         initPaint();
     }

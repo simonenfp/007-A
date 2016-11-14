@@ -30,7 +30,6 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     private float mPaintWidth;
 
     private Path mBgPath;
-    private PathMeasure mMeasure;
     private float mAllLength;
 
     private float mProgress;
@@ -59,7 +58,7 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     private void initPath(){
 
         mBgPath = new Path();
-        mBgPath.lineTo(mBound.right,mBound.top);
+        mBgPath.lineTo(-mBound.right,mBound.top);
         mAllLength =  mBound.right - mBound.left;
     }
 
@@ -69,11 +68,11 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     }
     @Override
     public void draw(Canvas canvas) {
-        canvas.translate(0,mPaintWidth/2.0f);
+        canvas.translate(mAllLength,mPaintWidth/2.0f);
 
         Path progressDst = new Path();
 
-        progressDst.lineTo(mBound.right * mProgress,mBound.top);
+        progressDst.lineTo(-mBound.right * (1 - mProgress),mBound.top);
 
 
         mPaint.setColor(Color.CYAN);

@@ -23,6 +23,7 @@
         />
 
     <com.simonenfp.me.loading.AnimationView
+        android:id="@+id/av3"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         app:loadingDrawable="StripProgressBarDrawable"

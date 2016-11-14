@@ -60,9 +60,7 @@ public class StripProgressBarDrawable extends LoadingDrawable{
 
         mBgPath = new Path();
         mBgPath.lineTo(mBound.right,mBound.top);
-        mMeasure = new PathMeasure();
-        mMeasure.setPath(mBgPath,false);
-        mAllLength =  mMeasure.getLength();
+        mAllLength =  mBound.right - mBound.left;
     }
 
     @Override
@@ -75,7 +73,7 @@ public class StripProgressBarDrawable extends LoadingDrawable{
 
         Path progressDst = new Path();
 
-        mMeasure.getSegment(0,mAllLength * mProgress,progressDst,true);
+        progressDst.lineTo(mBound.right * mProgress,mBound.top);
 
 
         mPaint.setColor(Color.CYAN);

@@ -1,12 +1,11 @@
 package com.simonenfp.me.module.ui.activity;
 
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
 
 import com.simonenfp.me.R;
 import com.simonenfp.me.base.BaseActivity;
 import com.simonenfp.me.loading.AnimationView;
-import com.simonenfp.me.loading.StripProgressBarDrawable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -14,12 +13,15 @@ import butterknife.ButterKnife;
 public class AnimatorActivity extends BaseActivity {
 
 
+    @Bind(R.id.av)
+    AnimationView av;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animator);
         ButterKnife.bind(this);
+        av.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
     }
 

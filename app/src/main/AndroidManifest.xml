@@ -12,7 +12,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:hardwareAccelerated="false"
         >
         <activity
             android:name=".module.ui.activity.MainActivity"
@@ -36,7 +35,7 @@
         </activity>
         <activity
             android:name=".module.ui.activity.AnimatorActivity"
-            android:hardwareAccelerated="false"
+            android:hardwareAccelerated="true"
             >
         </activity>
     </application>

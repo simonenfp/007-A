@@ -30,14 +30,19 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     private float mPaintWidth;
 
     private Path mBgPath;
-    private float mAllLength;
+    private float mWidth;
+    private float mHeight;
 
     private float mProgress;
     private Context mContext;
 
+    private static final float DEFAULT_PAINT_WIDTH = 2.0f;
+
+
     public StripProgressBarDrawable(Context context){
         super(context);
         mContext = context;
+        mPaintWidth = DisplayUtils.dip2px(context,DEFAULT_PAINT_WIDTH);
     }
 
     @Override
@@ -47,19 +52,20 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     }
 
     private void initPaint() {
-        mPaintWidth = mBound.bottom - mBound.top;
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStyle(Paint.Style.STROKE);
+//        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(mPaintWidth);
     }
 
     private void initPath(){
 
+        mWidth = mBound.width();
+        mHeight = mBound.height();
+
         mBgPath = new Path();
-        mBgPath.lineTo(-mBound.right,mBound.top);
-        mAllLength =  mBound.right - mBound.left;
+        mBgPath.addRect(mBound, Path.Direction.CW);
     }
 
     @Override
@@ -68,11 +74,16 @@ public class StripProgressBarDrawable extends LoadingDrawable{
     }
     @Override
     public void draw(Canvas canvas) {
-        canvas.translate(mAllLength,mPaintWidth/2.0f);
 
         Path progressDst = new Path();
 
-        progressDst.lineTo(-mBound.right * (1 - mProgress),mBound.top);
+
+
+        RectF rectF = new RectF(mWidth * mProgress + mHeight/2,mBound.top,mBound.right,mBound.bottom);
+        RectF rectF1 = new RectF(mWidth * mProgress,mBound.top,mWidth * mProgress + mHeight,mBound.bottom);
+        progressDst.addArc(rectF1,90,270);
+
+        progressDst.addRect(rectF, Path.Direction.CW);
 
 
         mPaint.setColor(Color.CYAN);

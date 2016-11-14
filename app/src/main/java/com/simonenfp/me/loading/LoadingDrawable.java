@@ -55,7 +55,7 @@ public abstract class LoadingDrawable extends Drawable implements Animatable{
         valueAnimator.addUpdateListener(mValueAnimatorListener);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(mDefaultDuration);
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatCount(1);
     }
 
     @Override
